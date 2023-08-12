@@ -10,12 +10,13 @@ import { useNavigate } from 'react-router-dom';
 
 export function Department(){
 
-	const {departments,inventory,getDepartments,dispatch,state}=useContext(InventoryContext);
+	const {departments,inventory,getDepartments,dispatch}=useContext(InventoryContext);
 
 	const navigate=useNavigate();
 
 	useEffect(()=>{
 		getDepartments();
+		dispatch({type:'reset',initial:inventory});
 	},[])
 
 	return(

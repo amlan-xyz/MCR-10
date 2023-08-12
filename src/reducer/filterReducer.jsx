@@ -20,6 +20,8 @@ export const filterReducer=(acc,action)=>{
 			}
 		case 'add_item':
 			return [...acc,action.payload];
+		case 'reset':
+			return [...action.initial];
 		default:
 			return acc;
 	}
