@@ -4,10 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {BrowserRouter as Router} from 'react-router-dom'
+
+import { InventoryContext,InventoryContextProvider } from './context/InventoryContext';
+
+export {InventoryContext};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <InventoryContextProvider>
+        <App />
+      </InventoryContextProvider>
+    </Router>
   </React.StrictMode>
 );
 

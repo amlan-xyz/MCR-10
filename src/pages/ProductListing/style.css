@@ -1,0 +1,8 @@
+.products_table{
+	border: 1px solid;
+	border-collapse: collapse;
+}
+
+.products_table td,th{
+	border: 1px solid;
+}
