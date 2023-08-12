@@ -5,6 +5,7 @@ import {InventoryContext} from '../../index'
 import { useNavigate } from 'react-router-dom';
 
 import {v4 as uuid} from 'uuid'
+import { Sidebar } from '../../components/Sidebar/Sidebar';
 
 export function Form(){
 	const [formData,setFormData]=useState({});
@@ -24,11 +25,13 @@ export function Form(){
 	},[])
 
 	return(
-		<section className="new_product">
+		<section className="layout">
+			<Sidebar/>
+			<div className="new_product">
 			<header>Add new Product</header>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="department">Department</label>
-				<select name="" id="department">
+				<select onChange={(e)=>setFormData(form=>({...form,department:e.target.value}))} id="department">
 					{
 						departments.map(item=>(
 							<option value={item}>{item}</option>	
@@ -40,19 +43,21 @@ export function Form(){
 				<label htmlFor="Description">Description:</label>
 				<input type="text" onChange={(e)=>setFormData(form=>({...form,description:e.target.value}))}  id="description" />
 				<label htmlFor="price"   >Price</label>
-				<input onChange={(e)=>setFormData(form=>({...form,price:e.target.value}))} type="number" id="price" />
+				<input onChange={(e)=>setFormData(form=>({...form,price:Number(e.target.value)}))} type="number" id="price" />
 				<label htmlFor="stock">Stock</label>
-				<input onChange={(e)=>setFormData(form=>({...form,stock:e.target.value}))} type="number" id="stock" />
+				<input onChange={(e)=>setFormData(form=>({...form,stock:Number(e.target.value)}))} type="number" id="stock" />
 				<label htmlFor="sku">SKU</label>
 				<input onChange={(e)=>setFormData(form=>({...form,sku:e.target.value}))} type="text" id="sku" />
 				<label htmlFor="supplier">Supplier</label>
 				<input type="text" onChange={(e)=>setFormData(form=>({...form,supplier:e.target.value}))} id='supplier' />
 				<label htmlFor="delivered">Delivered</label>
-				<input onChange={(e)=>setFormData(form=>({...form,delivered:e.target.value}))} type="number"  id="delivered"  />
+				<input onChange={(e)=>setFormData(form=>({...form,delivered:Number(e.target.value)}))} type="number"  id="delivered"  />
 				<label htmlFor="image">Image Url</label>
 				<input onChange={(e)=>setFormData(form=>({...form,imageUrl:e.target.value}))} type="text" id="image" />
-				<button type='submit'>Add Product</button>
+				<button className='submit' type='submit'>Add Product</button>
 			</form>
+			</div>
+			
 		</section>
 	)
 }

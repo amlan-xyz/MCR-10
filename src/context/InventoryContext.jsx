@@ -9,7 +9,6 @@ export function InventoryContextProvider({children}){
 
 	const [inventory,setInventory]=useState([]);
 	const [departments,setDepartments]=useState([]);
-	const [filter,setFilter]=useState('');
 	const [product,setProduct]=useState({});
 
 	const getInventory=()=>{
@@ -17,7 +16,7 @@ export function InventoryContextProvider({children}){
 	}
 
 	const getDepartments=()=>{
-		setDepartments(inventory.reduce((acc,curr)=>{
+		setDepartments(inventoryData.reduce((acc,curr)=>{
 			if(!acc.includes(curr.department)){
 				acc.push(curr.department);
 			}
@@ -31,7 +30,11 @@ export function InventoryContextProvider({children}){
 		setProduct(inventory.find(({id})=>id===Number(product_id)));
 	}
 
-	const value={setInventory,getProduct,product,inventory,getInventory,departments,getDepartments,filter,setFilter};
+	const filterItem=(item)=>{
+		setInventory(inventory.filter(({department})=>department===item));
+	}
+
+	const value={setInventory,getProduct,product,inventory,getInventory,departments,getDepartments,filterItem};
 
 	useEffect(()=>{
 		getInventory();

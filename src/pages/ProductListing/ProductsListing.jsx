@@ -21,7 +21,7 @@ export function ProductListing(){
 	const navigate=useNavigate();
 
 	const filterDepartment=(e)=>{
-		dispatch({type:'filter_department',payload:e.target.value});
+		dispatch({type:'filter_department',payload:e.target.value,initial:inventory});
 	}
 
 	const sortItems=(e)=>{
@@ -30,9 +30,6 @@ export function ProductListing(){
 
 	useEffect(()=>{
 		getDepartments();
-		// if(filter){
-		// 	dispatch(({type:'filter_department',payload:filter}));
-		// }
 	},[])
 
 	
@@ -43,7 +40,7 @@ export function ProductListing(){
 			<header className="product_listing_header">
 				<h1>Products</h1>
 				<select name="departments" onChange={filterDepartment} >
-					{/* <option value="all">All Departments</option> */}
+					<option value="all">All Departments</option>
 					{
 						departments.map(item=>(
 							<option value={item}>{item}</option>

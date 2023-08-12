@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function Department(){
 
-	const {setFilter,departments,getDepartments}=useContext(InventoryContext);
+	const {departments,getDepartments,filterItem}=useContext(InventoryContext);
 
 	const navigate=useNavigate();
 
@@ -25,7 +25,7 @@ export function Department(){
 				{
 					departments.map(item=>(
 						<li className='department_card' onClick={()=>{
-							setFilter(item);
+							filterItem(item);
 							navigate('/products');
 						}}>{item}</li>	
 					))

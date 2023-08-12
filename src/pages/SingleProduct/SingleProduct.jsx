@@ -24,7 +24,13 @@ export function SingleProduct(){
 				<div className="single_product_body">
 					<img src={product.imageUrl} alt="" />
 					<div className="single_product_content">
-						<p>Price:{product.price}</p>
+						<p>Price: {product.price}</p>
+						<p>Stock : {product.stock}</p>
+						<p>Supplier : {product.supplier}</p>
+						<p>Department:{product.department}</p>
+						<p>SKU:{product.sku}</p>
+						<p>Delivered:{product.delivered}</p>
+						<p>Description:{product.description}</p>
 					</div>
 				</div>
 			</div>
