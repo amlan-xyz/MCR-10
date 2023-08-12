@@ -4,19 +4,19 @@ import './style.css'
 import {InventoryContext} from '../../index'
 import { useNavigate } from 'react-router-dom';
 
-import {v4 as uuid} from 'uuid'
 import { Sidebar } from '../../components/Sidebar/Sidebar';
 
 export function Form(){
 	const [formData,setFormData]=useState({});
-	const {getDepartments,departments,setInventory}=useContext(InventoryContext);
+	const {getDepartments,departments,setInventory,dispatch,inventory}=useContext(InventoryContext);
 
 	const navigate=useNavigate();
 
 	const handleSubmit=(e)=>{
 		e.preventDefault();
-		const newProduct={id:uuid(),...formData}
+		const newProduct={id:inventory.length+1,...formData}
 		setInventory(prevData=>[...prevData,newProduct])
+		dispatch({type:'add_item',payload:newProduct})
 		navigate('/products');
 	}
 

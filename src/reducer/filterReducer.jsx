@@ -1,4 +1,5 @@
 
+
 export const filterReducer=(acc,action)=>{
 	switch(action.type){
 		case 'filter_department':			
@@ -17,6 +18,8 @@ export const filterReducer=(acc,action)=>{
 			}else{
 				return [...acc].sort((a,b)=>a.name.localeCompare(b.name));
 			}
+		case 'add_item':
+			return [...acc,action.payload];
 		default:
 			return acc;
 	}

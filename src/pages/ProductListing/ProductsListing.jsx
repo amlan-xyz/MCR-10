@@ -14,11 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function ProductListing(){
 
-	const {inventory,departments,getDepartments,filter}=useContext(InventoryContext);
-	const [initialState,setInitialState]=useState(inventory);
-
-	const [state,dispatch]=useReducer(filterReducer,initialState);
-	const navigate=useNavigate();
+	const {inventory,departments,getDepartments,state,dispatch}=useContext(InventoryContext);
 
 	const filterDepartment=(e)=>{
 		dispatch({type:'filter_department',payload:e.target.value,initial:inventory});
@@ -40,13 +36,13 @@ export function ProductListing(){
 			<header className="product_listing_header">
 				<h1>Products</h1>
 				<select name="departments" onChange={filterDepartment} >
-					<option value="all">All Departments</option>
 					{
 						departments.map(item=>(
 							<option value={item}>{item}</option>
 						))
 						
 					}
+					<option value="all">All Departments</option>
 				</select>
 
 				{/* checkbox */}

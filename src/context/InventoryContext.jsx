@@ -1,7 +1,7 @@
-import { createContext, useState,useEffect } from "react";
+import { createContext, useState,useEffect, useReducer } from "react";
 
 import {inventoryData} from '../data/inventory'
-import {v4 as uuid} from 'uuid'
+import {filterReducer } from "../reducer/filterReducer";
 
 export const InventoryContext=createContext();
 
@@ -10,6 +10,7 @@ export function InventoryContextProvider({children}){
 	const [inventory,setInventory]=useState([]);
 	const [departments,setDepartments]=useState([]);
 	const [product,setProduct]=useState({});
+	const [state,dispatch]=useReducer(filterReducer,inventoryData);
 
 	const getInventory=()=>{
 		setInventory(inventoryData);
@@ -30,14 +31,12 @@ export function InventoryContextProvider({children}){
 		setProduct(inventory.find(({id})=>id===Number(product_id)));
 	}
 
-	const filterItem=(item)=>{
-		setInventory(inventory.filter(({department})=>department===item));
-	}
 
-	const value={setInventory,getProduct,product,inventory,getInventory,departments,getDepartments,filterItem};
+	const value={getProduct,product,inventory,getInventory,departments,getDepartments,state,dispatch,setInventory};
 
 	useEffect(()=>{
 		getInventory();
+		
 	},[]);
 
 	return(
