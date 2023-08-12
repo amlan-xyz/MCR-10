@@ -1,13 +1,11 @@
-import { inventoryData } from "../data/inventory";
+
 
 export const filterReducer=(acc,action)=>{
 	switch(action.type){
 		case 'filter_department':			
-				if(action.payload==='all'){
-					return inventoryData;
-				}else{
+				
 					return [...acc].filter(({department})=>department===action.payload);
-				}
+				
 		case 'filter_low_stock':
 			return [...acc].filter(({stock})=>stock<=10);
 		case 'sort_items':

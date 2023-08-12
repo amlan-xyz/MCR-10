@@ -6,25 +6,27 @@ import {InventoryContext} from '../../index'
 import './style.css'
 import { Sidebar } from '../../components/Sidebar/Sidebar'
 import { filterReducer } from '../../reducer/filterReducer';
+import { useNavigate } from 'react-router-dom';
 
 export function Department(){
 
-	const {getInventory,inventory,departments,getDepartments}=useContext(InventoryContext);
+	const {setFilter,departments,getDepartments}=useContext(InventoryContext);
+
+	const navigate=useNavigate();
 
 	useEffect(()=>{
-		getInventory();
 		getDepartments();
 	},[])
 
 	return(
-		<section className="department">
-			<header>Department Page</header>
+		<section className="department layout">
 			<Sidebar/>
-			<ul className="deparment_list">
+			<ul className="department_list">
 				{
 					departments.map(item=>(
-						<li onClick={()=>{
-							
+						<li className='department_card' onClick={()=>{
+							setFilter(item);
+							navigate('/products');
 						}}>{item}</li>	
 					))
 				}

@@ -1,0 +1,18 @@
+.department_list{
+	margin-top: 5rem;
+	display: flex;
+	gap: 2rem;
+	justify-content: center;
+}
+
+.department_card{
+	height: 150px;
+	width: 200px;
+	background-color: rgb(160, 164, 168);
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: space-between;
+	font-size: 1.5rem;
+}

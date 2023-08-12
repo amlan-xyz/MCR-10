@@ -4,33 +4,35 @@ import {InventoryContext} from '../../index'
 
 import {Sidebar} from '../../components/Sidebar/Sidebar'
 
+import './style.css'
+
 export function Dashboard(){
 
-	const {inventory,getInventory}=useContext(InventoryContext);
-	const [totalStock,setTotalStock]=useState(0);
-	const [totalDelivered,setTotalDeliverd]=useState(0);
-	const [lowStock,setLowStock]=useState(0);
+	const {inventory,setInventory}=useContext(InventoryContext);
 
-	const getStockDetails=()=>{
-		setTotalStock(inventory.reduce((acc,curr)=>acc+curr.stock,0));
-		setTotalDeliverd(inventory.reduce((acc,curr)=>acc+curr.delivered,0));
-		setLowStock(inventory.reduce((acc,curr)=>curr.stock<=10?acc+1:acc,0));
-	}
-
-	useEffect(()=>{
-		getInventory();
-		getStockDetails();
-	},[])
-
+	
 	return (
-		<section className="dashboard">
-			<header>Dashboard Page</header>
+		<section className="dashboard layout">
 			<Sidebar/>
-			<div className="">
-				<p>Total Stock:{totalStock}
+			<div className="dashboard_body">
+				<p className='dashboard_card'>
+					<span className='card_data green'>
+					{inventory.reduce((acc,curr)=>acc+curr.stock,0)}
+					</span>
+					<span>Total Stock</span>
 				</p>
-				<p>Total Delivered:{totalDelivered}</p>
-				<p>Low Stock Items:{lowStock}</p>
+				<p className='dashboard_card'>
+				<span className='card_data yellow'>
+					{inventory.reduce((acc,curr)=>acc+curr.delivered,0)}
+				</span>
+				<span>Total Delivered</span>
+				</p>
+				<p className='dashboard_card'>
+				<span className='card_data red'>
+					{inventory.reduce((acc,curr)=>curr.stock<=10?acc+1:acc,0)}
+				</span>
+				<span>Low Stock Items </span>
+				</p>
 			</div>
 		</section>	
 	)

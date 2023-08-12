@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
+import './style.css'
 
 export function Sidebar(){
 	return(
 		<div className="sidebar">
-				<Link to='/'>Dashboard</Link> ||
-				<Link to='/department'>Department</Link> ||
-				<Link to='/products'>Products</Link>
+				<Link className="sidebar_item"  to='/'>Dashboard</Link>
+				<Link className="sidebar_item" to='/department'>Department</Link>
+				<Link className="sidebar_item" to='/products'>Products</Link>
 		</div>	
 	)
 }

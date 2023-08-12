@@ -1,0 +1,9 @@
+.single_product{
+	margin: 2rem;
+	/* text-align: center; */
+}
+
+.single_product img{
+	height: 500px;
+	width: 500px;
+}
